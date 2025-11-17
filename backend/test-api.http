@@ -1,0 +1,136 @@
+### Variables
+@baseUrl = http://localhost:8000/api
+@token = YOUR_TOKEN_HERE
+
+### 1. Register
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test@test.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+
+### 2. Login Client
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+    {
+    "email": "client@ecom.com",
+    "password": "password"
+    }
+
+### 3. Login Admin
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "admin@ecom.com",
+  "password": "password"
+}
+
+### 4. Get User Profile (need token)
+GET {{baseUrl}}/me
+Authorization: Bearer {{token}}
+
+### 5. Get Categories
+GET {{baseUrl}}/categories
+
+### 6. Get Products
+GET {{baseUrl}}/products
+
+### 7. Get Product by ID
+GET {{baseUrl}}/products/1
+
+### 8. Search Products
+GET {{baseUrl}}/products?search=smartphone
+
+### 9. Filter by Category
+GET {{baseUrl}}/products?category_id=1
+
+### 10. Get Cart (need token)
+GET {{baseUrl}}/cart
+Authorization: Bearer {{token}}
+
+### 11. Add to Cart (need token)
+POST {{baseUrl}}/cart/add
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "product_id": 1,
+  "quantity": 2
+}
+
+### 12. Update Cart Item (need token)
+PUT {{baseUrl}}/cart/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "quantity": 3
+}
+
+### 13. Remove from Cart (need token)
+DELETE {{baseUrl}}/cart/1
+Authorization: Bearer {{token}}
+
+### 14. Create Order (need token)
+POST {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "shipping_address": "123 Rue Test",
+  "shipping_city": "Paris",
+  "shipping_postal_code": "75001",
+  "shipping_phone": "0612345678",
+  "payment_method": "card"
+}
+
+### 15. Get My Orders (need token)
+GET {{baseUrl}}/orders
+Authorization: Bearer {{token}}
+
+### 16. Get Order Details (need token)
+GET {{baseUrl}}/orders/1
+Authorization: Bearer {{token}}
+
+### 17. Create Category (need admin token)
+POST {{baseUrl}}/admin/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Sports",
+  "description": "Articles de sport"
+}
+
+### 18. Update Product (need admin token)
+PUT {{baseUrl}}/admin/products/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "price": 549.99,
+  "stock": 45
+}
+
+### 19. Update Order Status (need admin token)
+PUT {{baseUrl}}/admin/orders/1/status
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "confirmed"
+}
+
+### 20. Get Dashboard Stats (need admin token)
+GET {{baseUrl}}/admin/dashboard
+Authorization: Bearer {{token}}
+
+### 21. Logout (need token)
+POST {{baseUrl}}/logout
+Authorization: Bearer {{token}}
